@@ -97,7 +97,7 @@ const Dashboard = () => {
       socket.emit('message:send', {
         activeChat: activeChat,
         content: message,
-        sender: user, // Replace with actual user ID from your auth system
+        sender: user, 
       });
 
       // Clear input
