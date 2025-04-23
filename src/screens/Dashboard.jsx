@@ -128,6 +128,9 @@ const Dashboard = () => {
       method: 'GET',  
     });
     const data = await response.json();
+    if(data.status===false){
+      navigate('/login');
+    }
     console.log(data);
     setChats([...data.conversations]);
     console.log(data.user,data);
@@ -172,7 +175,7 @@ const Dashboard = () => {
     }
   };
   const createChat = async () => {
-    console.log(form.getFieldValue('title'),form.getFieldValue('description'));
+    // console.log(form.getFieldValue('title'),form.getFieldValue('description'));
     const title = form.getFieldValue('title');
     const description = form.getFieldValue('description');
     const response = await fetch('http://localhost:5000/api/new-chat',{
@@ -187,6 +190,9 @@ const Dashboard = () => {
       }),
     });
     const data = await response.json();
+    if(data.status===false){
+      navigate('/login');
+    }
     console.log(data);
     if(data.success){
       setChats([...chats, data.conversation]);
