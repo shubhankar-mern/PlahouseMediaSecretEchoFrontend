@@ -24,7 +24,6 @@ const Login = () => {
     setError('');
 
     try {
-      // TODO: Implement actual login API call
       const response = await fetch('http://localhost:5000/api/auth/login', {
         method: 'POST',
         headers: {
@@ -39,7 +38,7 @@ const Login = () => {
 
       const data = await response.json();
       localStorage.setItem('token', data.token);
-      navigate('/dashboard'); // Redirect to chat page after successful login
+      navigate('/dashboard'); 
     } catch (err) {
       setError(err.message || 'Something went wrong. Please try again.');
     } finally {

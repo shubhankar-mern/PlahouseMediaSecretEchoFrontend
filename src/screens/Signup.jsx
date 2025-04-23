@@ -25,7 +25,7 @@ const Signup = () => {
     setIsLoading(true);
     setError('');
 
-    // Basic validation
+    
     if (formData.password !== formData.confirmPassword) {
       setError('Passwords do not match');
       setIsLoading(false);
@@ -33,7 +33,7 @@ const Signup = () => {
     }
 
     try {
-      // TODO: Implement actual signup API call
+     
       const response = await fetch('http://localhost:5000/api/auth/signup', {
         method: 'POST',
         headers: {
@@ -48,7 +48,7 @@ const Signup = () => {
 
       const data = await response.json();
       localStorage.setItem('token', data.token);
-      navigate('/dashboard'); // Redirect to chat page after successful signup
+      navigate('/dashboard'); 
     } catch (err) {
       setError(err.message || 'Something went wrong. Please try again.');
     } finally {

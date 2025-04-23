@@ -24,10 +24,10 @@ const Homepage = () => {
   return (
     <div>
     <div className="min-h-screen bg-[url('https://picsum.photos/1920/1080')] bg-cover bg-center bg-no-repeat relative">
-      {/* Gradient overlay */}
+     
       <div className="absolute inset-0 bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 opacity-90"></div>
       
-      {/* Content */}
+      
       <div className="relative container mx-auto px-4 py-16">
         <div className="flex flex-col items-center justify-center text-white">
           <h1 className="text-5xl font-bold mb-6 text-center">

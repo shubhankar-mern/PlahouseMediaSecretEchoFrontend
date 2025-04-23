@@ -19,7 +19,7 @@ const Dashboard = () => {
   const [messages, setMessages] = useState([]);
   const [socket, setSocket] = useState(null);
 
-  // Initialize socket connection
+  
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (!token) {
@@ -27,10 +27,10 @@ const Dashboard = () => {
       return;
     }
 
-    // Connect to WebSocket server
+    
     const newSocket = io('http://localhost:3000');
 
-    // Socket event listeners
+    
     newSocket.on('connect', () => {
       console.log('Connected to socket server');
     });
@@ -38,7 +38,7 @@ const Dashboard = () => {
     newSocket.on('message:received', (data) => {
       const { userMessage, aiResponse } = data;
       console.log(userMessage, aiResponse);
-      // Add both user message and AI response
+      
       setMessages(prev => [
         ...prev,
         {
@@ -55,18 +55,18 @@ const Dashboard = () => {
     newSocket.on('error', (error) => {
       console.error('Socket error:', error);
       setIsLoading(false);
-      // You might want to show an error message to the user
+      
     });
 
     setSocket(newSocket);
 
-    // Cleanup on unmount
+    
     return () => {
       newSocket.disconnect();
     };
   }, [navigate]);
 
-  // Auto-scroll to bottom when messages change
+ 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
@@ -85,7 +85,7 @@ const Dashboard = () => {
     }
     fetchChat();
   }, [activeChat]);
-  // Handle message submission
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!message.trim() || !socket) return;
@@ -93,7 +93,7 @@ const Dashboard = () => {
     setIsLoading(true);
 
     try {
-      // Emit message to server
+     
       socket.emit('message:send', {
         activeChat: activeChat,
         content: message,
@@ -108,13 +108,13 @@ const Dashboard = () => {
     }
   };
 
-  // Check authentication
+ 
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (!token) {
       navigate('/login');
     }
-    // TODO: Validate token with backend
+    
   }, [navigate]);
 
 
